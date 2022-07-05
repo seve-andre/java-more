@@ -1,12 +1,25 @@
 package range.integer;
 
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.util.stream.Stream;
 
 /**
+ * {@link IntRange} represents a range of integer values, that may have a step to skip certain values.
  *
+ * <p>Usage examples:
+ *  <ul>
+ *      <li>{@link IntRange#fromTo IntRange.fromTo(1, 5)} produces range of [1, 2, 3, 4, 5]</li>
+ *      <li>{@link IntRange#fromTo IntRange.fromTo(5, 1)} produces range of [5, 4, 3, 2, 1]</li>
+ *      <li>{@link IntRange#fromToWithStep IntRange.fromToWithStep(1, 10, 3)} produces range of [1, 4, 7, 10]</li>
+ *      <li>{@link IntRange#evensFromTo IntRange.evensFromTo(1, 10)} produces range of [2, 4, 6, 8, 10]</li>
+ *      <li>{@link IntRange#oddsFromTo  IntRange.oddsFromTo(1, 10)} produces range of [1, 3, 5, 7, 9]</li>
+ *      <li>{@link IntRange#reverse() IntRange.fromTo(1, 5).reverse()} produces the same result as {@link IntRange#fromTo IntRange.fromTo(5, 1)}</li>
+ *      <li>{@link IntRange#stream IntRange.fromTo(1, 5).stream()} produces a {@link Stream}{@code <Integer>} from IntRange [1, 2, 3, 4, 5]</li>
+ *  </ul>
  */
+@ToString
 @EqualsAndHashCode
 public final class IntRange {
     private final int from;
@@ -100,7 +113,7 @@ public final class IntRange {
             from++;
         }
 
-        return new IntRange(from, 1,-2);
+        return new IntRange(from, 1, -2);
     }
 
     public static IntRange oddsFromOneTo(int to) {
