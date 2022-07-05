@@ -52,10 +52,10 @@ public final class IntRange {
      */
     public static IntRange fromTo(int from, int to) {
         if (from > to) {
-            return new IntRange(from, to, -1);
+            return fromToWithStep(from, to, -1);
         }
 
-        return new IntRange(from, to, 1);
+        return fromToWithStep(from, to, 1);
     }
 
     /**
@@ -109,8 +109,11 @@ public final class IntRange {
      * @return {@link IntRange} with {@link #step} value
      */
     public static IntRange fromToWithStep(int from, int to, int step) {
-        if (from > to) {
-            return new IntRange(from, to, -step);
+        if (
+                (from == to && step < 0)
+                || (from > to && step > 0)
+        ) {
+            step = -step;
         }
 
         return new IntRange(from, to, step);
@@ -164,11 +167,9 @@ public final class IntRange {
     public static IntRange downToOne(int from) {
         if (from <= 0) {
             throw new IllegalStateException("from must be >= 1");
-        } else if (from == 1) {
-            return oneTo(1);
         }
 
-        return new IntRange(from, 1, -1);
+        return fromToWithStep(from, 1, -1);
     }
 
     /**
@@ -186,11 +187,9 @@ public final class IntRange {
     public static IntRange downToZero(int from) {
         if (from < 0) {
             throw new IllegalStateException("from must be >= 0");
-        } else if (from == 0) {
-            return zeroTo(0);
         }
 
-        return new IntRange(from, 0, -1);
+        return fromToWithStep(from, 0, -1);
     }
 
     /**
@@ -216,11 +215,9 @@ public final class IntRange {
             } else {
                 from++;
             }
-        } else if (from == to) {
-            return fromTo(from, to);
         }
 
-        return new IntRange(from, to, to > from ? 2 : -2);
+        return fromToWithStep(from, to, to > from ? 2 : -2);
     }
 
     /**
@@ -259,7 +256,7 @@ public final class IntRange {
             from++;
         }
 
-        return new IntRange(from, 0, -2);
+        return evensFromTo(from, 0);
     }
 
     /**
@@ -285,11 +282,9 @@ public final class IntRange {
             } else {
                 from++;
             }
-        } else if (from == to) {
-            return fromTo(from, to);
         }
 
-        return new IntRange(from, to, to > from ? 2 : -2);
+        return fromToWithStep(from, to, to > from ? 2 : -2);
     }
 
     /**
@@ -328,7 +323,7 @@ public final class IntRange {
             from++;
         }
 
-        return new IntRange(from, 1, -2);
+        return oddsFromTo(from, 1);
     }
 
     /**
