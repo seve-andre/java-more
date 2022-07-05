@@ -9,8 +9,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class IntRangeSimpleTest {
 
-    // TODO: check negative ranges and ranges with "from" and "to" with same value
-
     @Test
     void testProduceSameResult() {
         IntRange oneToTen = IntRange.oneTo(10);
