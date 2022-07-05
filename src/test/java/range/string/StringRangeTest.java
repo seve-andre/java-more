@@ -49,5 +49,8 @@ class StringRangeTest {
 
         assertThatExceptionOfType(IllegalStateException.class)
                 .isThrownBy(() -> StringRange.fromTo((char) 110, (char) 125));
+
+        assertThatExceptionOfType(IllegalStateException.class)
+                .isThrownBy(() -> StringRange.fromTo((char) 65, (char) 97));
     }
 }
