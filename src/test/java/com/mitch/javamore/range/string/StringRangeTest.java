@@ -6,6 +6,7 @@ import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
 
 class StringRangeTest {
 
@@ -41,16 +42,16 @@ class StringRangeTest {
 
     @Test
     void testIntParameter() {
-        assertThatExceptionOfType(IllegalStateException.class)
+        assertThatIllegalStateException()
                 .isThrownBy(() -> StringRange.fromTo((char) 1, (char) 10));
 
-        assertThatExceptionOfType(IllegalStateException.class)
+        assertThatIllegalStateException()
                 .isThrownBy(() -> StringRange.fromTo((char) 96, (char) 110));
 
-        assertThatExceptionOfType(IllegalStateException.class)
+        assertThatIllegalStateException()
                 .isThrownBy(() -> StringRange.fromTo((char) 110, (char) 125));
 
-        assertThatExceptionOfType(IllegalStateException.class)
+        assertThatIllegalStateException()
                 .isThrownBy(() -> StringRange.fromTo((char) 65, (char) 97));
     }
 }
