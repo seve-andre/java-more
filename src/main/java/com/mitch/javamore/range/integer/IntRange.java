@@ -1,4 +1,4 @@
-package range.integer;
+package com.mitch.javamore.range.integer;
 
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -68,10 +68,10 @@ public final class IntRange {
      * </p>
      *
      * @param to final value of the range (included)
-     * @return {@link IntRange} with step 1
+     * @return {@link IntRange} with step +1 or -1 depending on {@link #to} value
      */
     public static IntRange zeroTo(int to) {
-        return new IntRange(0, to, 1);
+        return fromTo(0, to);
     }
 
     /**
@@ -84,10 +84,10 @@ public final class IntRange {
      * </p>
      *
      * @param to final value of the range (included)
-     * @return {@link IntRange} with step 1
+     * @return {@link IntRange} with step +1 or -1 depending on {@link #to} value
      */
     public static IntRange oneTo(int to) {
-        return new IntRange(1, to, 1);
+        return fromTo(1, to);
     }
 
     /**
@@ -106,7 +106,7 @@ public final class IntRange {
      * @param from start value of the range (included)
      * @param to final value of the range (included)
      * @param step to skip values
-     * @return {@link IntRange} with step 1
+     * @return {@link IntRange} with {@link #step} value
      */
     public static IntRange fromToWithStep(int from, int to, int step) {
         if (from > to) {
@@ -130,7 +130,7 @@ public final class IntRange {
      * @return {@link IntRange} with {@link #step} value
      */
     public static IntRange zeroToWithStep(int to, int step) {
-        return new IntRange(0, to, step);
+        return fromToWithStep(0, to, step);
     }
 
     /**
@@ -146,7 +146,7 @@ public final class IntRange {
      * @return {@link IntRange} with {@link #step} value
      */
     public static IntRange oneToWithStep(int to, int step) {
-        return new IntRange(1, to, step);
+        return fromToWithStep(1, to, step);
     }
 
     /**
@@ -162,6 +162,12 @@ public final class IntRange {
      * @return {@link IntRange} with step -1
      */
     public static IntRange downToOne(int from) {
+        if (from <= 0) {
+            throw new IllegalStateException("from must be >= 1");
+        } else if (from == 1) {
+            return oneTo(1);
+        }
+
         return new IntRange(from, 1, -1);
     }
 
@@ -178,6 +184,12 @@ public final class IntRange {
      * @return {@link IntRange} with step -1
      */
     public static IntRange downToZero(int from) {
+        if (from < 0) {
+            throw new IllegalStateException("from must be >= 0");
+        } else if (from == 0) {
+            return zeroTo(0);
+        }
+
         return new IntRange(from, 0, -1);
     }
 
@@ -199,9 +211,13 @@ public final class IntRange {
         if (from % 2 != 0) {
             if (from > to) {
                 from--;
+            } else if (from == to) {
+                throw new IllegalStateException("no possible even values between " + from + " and " + to);
             } else {
                 from++;
             }
+        } else if (from == to) {
+            return fromTo(from, to);
         }
 
         return new IntRange(from, to, to > from ? 2 : -2);
@@ -220,7 +236,7 @@ public final class IntRange {
      * @return {@link IntRange} with step 2
      */
     public static IntRange evensFromZeroTo(int to) {
-        return new IntRange(0, to, 2);
+        return evensFromTo(0, to);
     }
 
     /**
@@ -235,6 +251,10 @@ public final class IntRange {
      * @return {@link IntRange} with step -2
      */
     public static IntRange evensDownToZero(int from) {
+        if (from < 0) {
+            throw new IllegalStateException("from must be >= 0");
+        }
+
         if (from % 2 != 0) {
             from++;
         }
@@ -260,9 +280,13 @@ public final class IntRange {
         if (from % 2 == 0) {
             if (from > to) {
                 from--;
+            } else if (from == to) {
+                throw new IllegalStateException("no possible even values between " + from + " and " + to);
             } else {
                 from++;
             }
+        } else if (from == to) {
+            return fromTo(from, to);
         }
 
         return new IntRange(from, to, to > from ? 2 : -2);
@@ -281,7 +305,7 @@ public final class IntRange {
      * @return {@link IntRange} with step 2
      */
     public static IntRange oddsFromOneTo(int to) {
-        return new IntRange(1, to, 2);
+        return oddsFromTo(1, to);
     }
 
     /**
@@ -296,6 +320,10 @@ public final class IntRange {
      * @return {@link IntRange} with step -2
      */
     public static IntRange oddsDownToOne(int from) {
+        if (from <= 0) {
+            throw new IllegalStateException("from must be >= 1");
+        }
+
         if (from % 2 == 0) {
             from++;
         }
@@ -310,6 +338,7 @@ public final class IntRange {
      *  Stream<Integer> oneToTenStream = IntRange.oneTo(10).stream();
      * }
      * </pre>
+     *
      * @return {@link Stream}{@code <Integer>} with all values of the range
      */
     public Stream<Integer> stream() {
