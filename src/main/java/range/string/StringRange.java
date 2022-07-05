@@ -1,14 +1,29 @@
 package range.string;
 
 
+import range.integer.IntRange;
+
+import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class StringRange {
+// TODO: support multi-language alphabet - NOW ENGLISH ONLY
+
+public final class StringRange {
     private final char start;
     private final char end;
 
-    public StringRange(char start, char end) {
+    private StringRange(char start, char end) {
+        List<Integer> uppercaseAscii = IntRange.fromTo(65, 90).stream().toList();
+        List<Integer> lowercaseAscii = IntRange.fromTo(97, 122).stream().toList();
+
+        if (
+                (!uppercase.contains((int) start) || !uppercase.contains((int) end))
+                && (!lowercase.contains((int) start) || !lowercase.contains((int) end))
+        ) {
+            throw new IllegalStateException("StringRange can only contain letters from the alphabet");
+        }
+
         this.start = start;
         this.end = end;
     }
