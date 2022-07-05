@@ -1,4 +1,4 @@
-package range.integer;
+package range.string;
 
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
