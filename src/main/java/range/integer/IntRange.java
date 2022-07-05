@@ -1,7 +1,13 @@
 package range.integer;
 
+import lombok.EqualsAndHashCode;
+
 import java.util.stream.Stream;
 
+/**
+ *
+ */
+@EqualsAndHashCode
 public final class IntRange {
     private final int from;
     private final int to;
@@ -30,6 +36,10 @@ public final class IntRange {
     }
 
     public static IntRange fromToWithStep(int from, int to, int step) {
+        if (from > to) {
+            return new IntRange(from, to, -step);
+        }
+
         return new IntRange(from, to, step);
     }
 
@@ -70,7 +80,7 @@ public final class IntRange {
             from++;
         }
 
-        return new IntRange(from, 1, -2);
+        return new IntRange(from, 0, -2);
     }
 
     public static IntRange oddsFromTo(int from, int to) {
