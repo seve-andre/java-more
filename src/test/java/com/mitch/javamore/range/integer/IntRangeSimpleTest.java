@@ -1,4 +1,4 @@
-package range.integer;
+package com.mitch.javamore.range.integer;
 
 import org.junit.jupiter.api.Test;
 
@@ -8,6 +8,8 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class IntRangeSimpleTest {
+
+    // TODO: check negative ranges and ranges with "from" and "to" with same value
 
     @Test
     void testProduceSameResult() {

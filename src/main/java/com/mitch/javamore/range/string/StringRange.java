@@ -1,7 +1,6 @@
-package range.string;
+package com.mitch.javamore.range.string;
 
-
-import range.integer.IntRange;
+import com.mitch.javamore.range.integer.IntRange;
 
 import java.util.List;
 import java.util.stream.IntStream;

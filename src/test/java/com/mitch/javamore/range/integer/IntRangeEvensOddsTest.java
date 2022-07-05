@@ -1,4 +1,4 @@
-package range.integer;
+package com.mitch.javamore.range.integer;
 
 import org.junit.jupiter.api.Test;
 

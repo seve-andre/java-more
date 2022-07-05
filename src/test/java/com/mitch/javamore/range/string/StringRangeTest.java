@@ -1,4 +1,4 @@
-package range.string;
+package com.mitch.javamore.range.string;
 
 import org.junit.jupiter.api.Test;
 
