@@ -5,10 +5,9 @@ import org.junit.jupiter.api.Test;
 import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class StringRangeTest {
-
-    // TODO: check what happens if (char) number is passed as parameter
 
     @Test
     void testAlphabet() {
@@ -38,5 +37,17 @@ class StringRangeTest {
         StringRange hToB = StringRange.fromTo('h', 'b');
 
         assertThat(hToB.stream()).containsExactly("h", "g", "f", "e", "d", "c", "b");
+    }
+
+    @Test
+    void testIntParameter() {
+        assertThatExceptionOfType(IllegalStateException.class)
+                .isThrownBy(() -> StringRange.fromTo((char) 1, (char) 10));
+
+        assertThatExceptionOfType(IllegalStateException.class)
+                .isThrownBy(() -> StringRange.fromTo((char) 96, (char) 110));
+
+        assertThatExceptionOfType(IllegalStateException.class)
+                .isThrownBy(() -> StringRange.fromTo((char) 110, (char) 125));
     }
 }
