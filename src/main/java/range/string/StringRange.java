@@ -18,8 +18,8 @@ public final class StringRange {
         List<Integer> lowercaseAscii = IntRange.fromTo(97, 122).stream().toList();
 
         if (
-                (!uppercase.contains((int) start) || !uppercase.contains((int) end))
-                && (!lowercase.contains((int) start) || !lowercase.contains((int) end))
+                (!uppercaseAscii.contains((int) start) || !uppercaseAscii.contains((int) end))
+                && (!lowercaseAscii.contains((int) start) || !lowercaseAscii.contains((int) end))
         ) {
             throw new IllegalStateException("StringRange can only contain letters from the alphabet");
         }
