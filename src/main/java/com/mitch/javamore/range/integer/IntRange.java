@@ -361,6 +361,6 @@ public final class IntRange {
      * @return {@link IntRange} reversed
      */
     public IntRange reverse() {
-        return IntRange.fromToWithStep(to, from, -step);
+        return fromToWithStep(to, from, -step);
     }
 }
