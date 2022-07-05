@@ -1,5 +1,6 @@
 package range.string;
 
+
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -14,6 +15,14 @@ public class StringRange {
 
     public static StringRange fromTo(char start, char end) {
         return new StringRange(start, end);
+    }
+
+    public static StringRange alphabet() {
+        return new StringRange('a', 'z');
+    }
+
+    public StringRange reversed() {
+        return new StringRange(end, start);
     }
 
     public Stream<String> stream() {
