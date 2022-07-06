@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class IntRangeSimpleTest {
+class IntRangeForwardTest {
 
     @Test
     void testProduceSameResult() {
@@ -34,7 +34,7 @@ class IntRangeSimpleTest {
     }
 
     @Test
-    void testSimpleRanges() {
+    void testForwardRanges() {
         IntRange oneToTen = IntRange.oneTo(10);
         IntRange zeroToTen = IntRange.zeroTo(10);
         IntRange fourToTen = IntRange.fromTo(4, 10);
@@ -50,7 +50,7 @@ class IntRangeSimpleTest {
     }
 
     @Test
-    void testRangeWithStep() {
+    void testForwardRangesWithStep() {
         IntRange oneToThirtyStep5 = IntRange.oneToWithStep(30, 5);
         IntRange zeroToOneHundredStep10 = IntRange.zeroToWithStep(100, 5);
         IntRange fromOneToFifteenStep4 = IntRange.fromToWithStep(1, 15, 4);
