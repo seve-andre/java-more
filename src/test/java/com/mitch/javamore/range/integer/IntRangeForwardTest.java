@@ -40,13 +40,13 @@ class RangeForwardTest {
         Range fourToTen = Range.fromTo(4, 10);
 
         assertThat(oneToTen.stream())
-                .containsAll(IntStream.rangeClosed(1, 10).boxed().toList());
+                .containsExactlyElementsOf(IntStream.rangeClosed(1, 10).boxed().toList());
 
         assertThat(zeroToTen.stream())
-                .containsAll(IntStream.rangeClosed(0, 10).boxed().toList());
+                .containsExactlyElementsOf(IntStream.rangeClosed(0, 10).boxed().toList());
 
         assertThat(fourToTen.stream())
-                .containsAll(IntStream.rangeClosed(4, 10).boxed().toList());
+                .containsExactlyElementsOf(IntStream.rangeClosed(4, 10).boxed().toList());
     }
 
     @Test
@@ -56,12 +56,12 @@ class RangeForwardTest {
         Range fromOneToFifteenStep4 = Range.fromToWithStep(1, 15, 4);
 
         assertThat(oneToThirtyStep5.stream())
-                .containsAll(Stream.iterate(1, i -> i <= 30, i -> i + 5).toList());
+                .containsExactlyElementsOf(Stream.iterate(1, i -> i <= 30, i -> i + 5).toList());
 
         assertThat(zeroToOneHundredStep10.stream())
-                .containsAll(Stream.iterate(0, i -> i <= 100, i -> i + 10).toList());
+                .containsExactlyElementsOf(Stream.iterate(0, i -> i <= 100, i -> i + 10).toList());
 
         assertThat(fromOneToFifteenStep4.stream())
-                .containsAll(Stream.iterate(1, i -> i <= 15, i -> i + 4).toList());
+                .containsExactlyElementsOf(Stream.iterate(1, i -> i <= 15, i -> i + 4).toList());
     }
 }

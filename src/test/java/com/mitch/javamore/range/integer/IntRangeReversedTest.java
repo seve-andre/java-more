@@ -27,13 +27,13 @@ class RangeReversedTest {
         Range fiftyToTen = Range.fromTo(50, 10);
 
         assertThat(tenToOne.stream())
-                .containsAll(Stream.iterate(10, i -> i >= 1, i -> i - 1).toList());
+                .containsExactlyElementsOf(Stream.iterate(10, i -> i >= 1, i -> i - 1).toList());
 
         assertThat(tenToZero.stream())
-                .containsAll(Stream.iterate(10, i -> i >= 0, i -> i - 1).toList());
+                .containsExactlyElementsOf(Stream.iterate(10, i -> i >= 0, i -> i - 1).toList());
 
         assertThat(fiftyToTen.stream())
-                .containsAll(Stream.iterate(50, i -> i >= 10, i -> i - 1).toList());
+                .containsExactlyElementsOf(Stream.iterate(50, i -> i >= 10, i -> i - 1).toList());
     }
 
     @Test
@@ -41,7 +41,7 @@ class RangeReversedTest {
         Range fiftyToTenStep5 = Range.fromToWithStep(50, 10, 5);
 
         assertThat(fiftyToTenStep5.stream())
-                .containsAll(Stream.iterate(50, i -> i >= 10, i -> i - 5).toList());
+                .containsExactlyElementsOf(Stream.iterate(50, i -> i >= 10, i -> i - 5).toList());
     }
 
     @Test

@@ -14,7 +14,7 @@ class RangeNegativeTest {
         Range negativeRange = Range.fromTo(-3, 1);
 
         assertThat(negativeRange.stream())
-                .containsAll(IntStream.rangeClosed(-3, 1).boxed().toList());
+                .containsExactlyElementsOf(IntStream.rangeClosed(-3, 1).boxed().toList());
     }
 
     @Test

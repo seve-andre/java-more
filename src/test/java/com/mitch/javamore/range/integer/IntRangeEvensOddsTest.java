@@ -21,7 +21,7 @@ class RangeEvensOddsTest {
         Range evensToTen = Range.evensFromTo(0, 10);
 
         assertThat(evensToTen.stream())
-                .containsAll(Stream.iterate(0, i -> i <= 10, i -> i + 2).toList());
+                .containsExactlyElementsOf(Stream.iterate(0, i -> i <= 10, i -> i + 2).toList());
     }
 
     @Test
@@ -29,7 +29,7 @@ class RangeEvensOddsTest {
         Range evensFromTenToZero = Range.evensDownToZero(10);
 
         assertThat(evensFromTenToZero.stream())
-                .containsAll(Stream.iterate(10, i -> i >= 0, i -> i - 2).toList());
+                .containsExactlyElementsOf(Stream.iterate(10, i -> i >= 0, i -> i - 2).toList());
     }
 
     @Test
@@ -45,7 +45,7 @@ class RangeEvensOddsTest {
         Range oddsToTen = Range.oddsFromTo(0, 10);
 
         assertThat(oddsToTen.stream())
-                .containsAll(Stream.iterate(1, i -> i <= 9, i -> i + 2).toList());
+                .containsExactlyElementsOf(Stream.iterate(1, i -> i <= 9, i -> i + 2).toList());
     }
 
     @Test
@@ -53,6 +53,6 @@ class RangeEvensOddsTest {
         Range oddsFromTenToOne = Range.oddsDownToOne(10);
 
         assertThat(oddsFromTenToOne.stream())
-                .containsAll(Stream.iterate(9, i -> i >= 1, i -> i - 2).toList());
+                .containsExactlyElementsOf(Stream.iterate(9, i -> i >= 1, i -> i - 2).toList());
     }
 }
