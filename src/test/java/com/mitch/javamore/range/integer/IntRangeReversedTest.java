@@ -6,15 +6,15 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class IntRangeReversedTest {
+class RangeReversedTest {
 
     @Test
     void testProduceSameResultReversed() {
-        IntRange tenToOne = IntRange.downToOne(10);
-        IntRange fromTenToOne = IntRange.fromTo(10, 1);
+        Range tenToOne = Range.downToOne(10);
+        Range fromTenToOne = Range.fromTo(10, 1);
 
-        IntRange tenToZero = IntRange.downToZero(10);
-        IntRange fromTenToZero = IntRange.fromTo(10, 0);
+        Range tenToZero = Range.downToZero(10);
+        Range fromTenToZero = Range.fromTo(10, 0);
 
         assertThat(tenToOne).isEqualTo(fromTenToOne);
         assertThat(tenToZero).isEqualTo(fromTenToZero);
@@ -22,9 +22,9 @@ class IntRangeReversedTest {
 
     @Test
     void testReversedRanges() {
-        IntRange tenToOne = IntRange.downToOne(10);
-        IntRange tenToZero = IntRange.downToZero(10);
-        IntRange fiftyToTen = IntRange.fromTo(50, 10);
+        Range tenToOne = Range.downToOne(10);
+        Range tenToZero = Range.downToZero(10);
+        Range fiftyToTen = Range.fromTo(50, 10);
 
         assertThat(tenToOne.stream())
                 .containsAll(Stream.iterate(10, i -> i >= 1, i -> i - 1).toList());
@@ -38,7 +38,7 @@ class IntRangeReversedTest {
 
     @Test
     void testReversedRangesWithStep() {
-        IntRange fiftyToTenStep5 = IntRange.fromToWithStep(50, 10, 5);
+        Range fiftyToTenStep5 = Range.fromToWithStep(50, 10, 5);
 
         assertThat(fiftyToTenStep5.stream())
                 .containsAll(Stream.iterate(50, i -> i >= 10, i -> i - 5).toList());
@@ -46,8 +46,8 @@ class IntRangeReversedTest {
 
     @Test
     void testReversedMethod() {
-        IntRange oneToTen = IntRange.oneTo(10);
-        IntRange tenToOne = IntRange.downToOne(10);
+        Range oneToTen = Range.oneTo(10);
+        Range tenToOne = Range.downToOne(10);
 
         assertThat(oneToTen).isEqualTo(tenToOne.reverse());
     }

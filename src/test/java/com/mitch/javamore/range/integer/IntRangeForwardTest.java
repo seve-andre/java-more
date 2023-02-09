@@ -7,15 +7,15 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class IntRangeForwardTest {
+class RangeForwardTest {
 
     @Test
     void testProduceSameResult() {
-        IntRange oneToTen = IntRange.oneTo(10);
-        IntRange fromOneToTen = IntRange.fromTo(1, 10);
+        Range oneToTen = Range.oneTo(10);
+        Range fromOneToTen = Range.fromTo(1, 10);
 
-        IntRange zeroToTen = IntRange.zeroTo(10);
-        IntRange fromZeroToTen = IntRange.fromTo(0, 10);
+        Range zeroToTen = Range.zeroTo(10);
+        Range fromZeroToTen = Range.fromTo(0, 10);
 
         assertThat(oneToTen).isEqualTo(fromOneToTen);
         assertThat(zeroToTen).isEqualTo(fromZeroToTen);
@@ -23,11 +23,11 @@ class IntRangeForwardTest {
 
     @Test
     void testProduceSameResultWithStep() {
-        IntRange oneToTenStep3 = IntRange.oneToWithStep(10, 3);
-        IntRange fromOneToTenStep3 = IntRange.fromToWithStep(1, 10, 3);
+        Range oneToTenStep3 = Range.oneToWithStep(10, 3);
+        Range fromOneToTenStep3 = Range.fromToWithStep(1, 10, 3);
 
-        IntRange zeroToTenStep3 = IntRange.zeroToWithStep(10, 3);
-        IntRange fromZeroToTenStep3 = IntRange.fromToWithStep(0, 10, 3);
+        Range zeroToTenStep3 = Range.zeroToWithStep(10, 3);
+        Range fromZeroToTenStep3 = Range.fromToWithStep(0, 10, 3);
 
         assertThat(oneToTenStep3).isEqualTo(fromOneToTenStep3);
         assertThat(zeroToTenStep3).isEqualTo(fromZeroToTenStep3);
@@ -35,9 +35,9 @@ class IntRangeForwardTest {
 
     @Test
     void testForwardRanges() {
-        IntRange oneToTen = IntRange.oneTo(10);
-        IntRange zeroToTen = IntRange.zeroTo(10);
-        IntRange fourToTen = IntRange.fromTo(4, 10);
+        Range oneToTen = Range.oneTo(10);
+        Range zeroToTen = Range.zeroTo(10);
+        Range fourToTen = Range.fromTo(4, 10);
 
         assertThat(oneToTen.stream())
                 .containsAll(IntStream.rangeClosed(1, 10).boxed().toList());
@@ -51,9 +51,9 @@ class IntRangeForwardTest {
 
     @Test
     void testForwardRangesWithStep() {
-        IntRange oneToThirtyStep5 = IntRange.oneToWithStep(30, 5);
-        IntRange zeroToOneHundredStep10 = IntRange.zeroToWithStep(100, 5);
-        IntRange fromOneToFifteenStep4 = IntRange.fromToWithStep(1, 15, 4);
+        Range oneToThirtyStep5 = Range.oneToWithStep(30, 5);
+        Range zeroToOneHundredStep10 = Range.zeroToWithStep(100, 5);
+        Range fromOneToFifteenStep4 = Range.fromToWithStep(1, 15, 4);
 
         assertThat(oneToThirtyStep5.stream())
                 .containsAll(Stream.iterate(1, i -> i <= 30, i -> i + 5).toList());
