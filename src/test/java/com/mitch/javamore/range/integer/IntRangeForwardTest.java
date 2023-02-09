@@ -52,7 +52,7 @@ class RangeForwardTest {
     @Test
     void testForwardRangesWithStep() {
         Range oneToThirtyStep5 = Range.oneToWithStep(30, 5);
-        Range zeroToOneHundredStep10 = Range.zeroToWithStep(100, 5);
+        Range zeroToOneHundredStep10 = Range.zeroToWithStep(100, 10);
         Range fromOneToFifteenStep4 = Range.fromToWithStep(1, 15, 4);
 
         assertThat(oneToThirtyStep5.stream())
