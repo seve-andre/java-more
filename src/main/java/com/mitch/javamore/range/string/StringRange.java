@@ -1,6 +1,6 @@
 package com.mitch.javamore.range.string;
 
-import com.mitch.javamore.range.integer.IntRange;
+import com.mitch.javamore.range.integer.Range;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -13,8 +13,8 @@ public final class StringRange {
     private final char end;
 
     private StringRange(char start, char end) {
-        List<Integer> uppercaseAscii = IntRange.fromTo(65, 90).stream().toList();
-        List<Integer> lowercaseAscii = IntRange.fromTo(97, 122).stream().toList();
+        List<Integer> uppercaseAscii = Range.fromTo(65, 90).stream().toList();
+        List<Integer> lowercaseAscii = Range.fromTo(97, 122).stream().toList();
 
         if (
                 (!uppercaseAscii.contains((int) start) || !uppercaseAscii.contains((int) end))
