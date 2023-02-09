@@ -107,14 +107,16 @@ public final class Range {
      * @return {@link Range} with {@link #step} value
      */
     public static Range fromToWithStep(int from, int to, int step) {
-        if (
-                (from == to && step < 0)
-                        || (from > to && step > 0)
-        ) {
+        if (shouldInvertStep(from, to, step)) {
             step = -step;
         }
 
         return new Range(from, to, step);
+    }
+
+    private static boolean shouldInvertStep(int from, int to, int step) {
+        return (from == to && step < 0)
+                || (from > to && step > 0);
     }
 
     /**
