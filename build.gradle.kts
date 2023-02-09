@@ -21,6 +21,9 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.24")
     testCompileOnly("org.projectlombok:lombok:1.18.24")
     testAnnotationProcessor("org.projectlombok:lombok:1.18.24")
+
+    // Guava - https://github.com/google/guava
+    implementation("com.google.guava:guava:11.0.2")
 }
 
 tasks.getByName<Test>("test") {
